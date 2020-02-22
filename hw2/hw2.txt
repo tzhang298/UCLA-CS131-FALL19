@@ -1,0 +1,17 @@
+1.get the alternative list for a given nonterminal and convert them
+
+2. iterate through the list and add leaves one by one
+
+3. implements a backtracking approach, use DFS from the current nonterminal and alternative
+list from left to right and see if there is a match for acceptable prefix.
+if there isn't any match, traceback to try sub rules in the alternative list. One
+drawback of the approach is that sometimes one single fragment could return None.
+
+4. I have thought about the potential way of doing make_parse by utilizing
+make_matcher. However, it is arduous and tricky to call the make_matcher
+function directly, so i decided to rewrote the function independently.
+One weakness is redundant code because it could have been done by calling
+make_matcher.Moreover, another weakness is that when the grammar has something
+like A->[N A;N B;N C] or A->[N B] B->[N A] they will run into an infinite
+recursion. Both problems could be avoided by adding a specific function that
+checks these grammar. 
